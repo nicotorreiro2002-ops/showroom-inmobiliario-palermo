@@ -24,7 +24,7 @@ export const projectData = {
   quickInfo: {
     area: "54 m²",          // Superficie total
     rooms: "monoambiente",    // Cantidad de ambientes
-    floor: "Piso 10",        // Piso en el que se encuentra
+    floor: "Piso 10",        // Piso
     orientation: "Norte"    // Orientación
   },
 
