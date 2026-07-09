@@ -114,7 +114,7 @@ export const projectData = {
     
     // Lista de terminaciones principales de la unidad
     finishes: [
-      "Pisos de porcelanato de primera calidad",
+      "Pisos de madera de primera calidad",
       "Carpinterías exteriores de aluminio anodizado con doble vidriado hermético (DVH)",
       "Muebles de cocina bajo mesada y alacenas de diseño italiano",
       "Mesadas de granito o cuarzo en cocina y baño",
@@ -124,7 +124,6 @@ export const projectData = {
     
     // Lista de amenities comunes del edificio (dejar array vacío [] si no tiene)
     amenities: [
-      "Piscina exterior con solárium en terraza",
       "SUM (Salón de Usos Múltiples) equipado con parrilla",
       "Gimnasio completo de uso común",
       "Seguridad privada las 24 horas",
@@ -135,11 +134,11 @@ export const projectData = {
   // Información de contacto directo
   contact: {
     // Código de país + número sin espacios ni signos (ej: 5491112345678)
-    whatsapp: "5491112345678",
+    whatsapp: "5491162821303",
     // Dirección de correo electrónico de recepción
-    email: "ventas@brigospalermo.com",
+    email: "nicotorreiro2002@gmail.com",
     // Mensaje predeterminado que se enviará por WhatsApp al hacer click
-    message: "Hola! Estoy interesado en la Unidad 1982 de Brigos Palermo. ¿Me podrían enviar más información?",
+    message: "Hola! Estoy interesado en la Unidad del piso 10A de Brigos Palermo. ¿Me podrían enviar más información?",
     // Texto comercial que acompaña la sección de contacto
     commercialText: "Coordiná una reunión virtual o visitá nuestro showroom en Palermo para conocer el departamento modelo."
   }
