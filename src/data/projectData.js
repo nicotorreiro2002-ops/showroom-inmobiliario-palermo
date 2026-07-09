@@ -23,7 +23,7 @@ export const projectData = {
   // Datos rápidos para la sección Hero
   quickInfo: {
     area: "54 m²",          // Superficie total
-    rooms: "2 ambientes",    // Cantidad de ambientes
+    rooms: "monoambiente",    // Cantidad de ambientes
     floor: "Piso 10",        // Piso en el que se encuentra
     orientation: "Norte"    // Orientación
   },
