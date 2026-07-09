@@ -9,7 +9,7 @@ export const projectData = {
   buildingName: "Brigos Palermo",
   
   // Nombre de la unidad específica (ej: "Edificio residencial", "Palermo")
-  unitName: "Render test",
+  unitName: "Render test Urbania",
   
   // Ubicación del emprendimiento
   location: "Palermo, Buenos Aires",
