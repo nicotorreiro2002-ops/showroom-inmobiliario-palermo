@@ -2,15 +2,23 @@ import React from "react";
 import { projectData } from "../data/projectData";
 import { MessageSquare, Mail, MapPin } from "lucide-react";
 
-export default function Contact() {
+export default function Contact({ activeUnit }) {
   const { contact, buildingName, location } = projectData;
 
-  // WhatsApp Url - cleans non-numeric characters automatically
-  const cleanedWhatsapp = contact.whatsapp.replace(/\D/g, "");
-  const whatsappUrl = `https://wa.me/${cleanedWhatsapp}?text=${encodeURIComponent(contact.message)}`;
+  // Sanitizamos el número de teléfono
+  const cleanedWhatsapp = (contact?.whatsapp || "").replace(/\D/g, "");
+  
+  // Mensaje y asunto dinámico según la unidad que esté visualizando
+  const unitText = activeUnit ? ` la ${activeUnit.name} (${activeUnit.label})` : "";
+  const customMessage = `Hola! Estoy interesado en obtener más información sobre${unitText} en ${buildingName}.`;
+  
+  // WhatsApp Url
+  const whatsappUrl = `https://wa.me/${cleanedWhatsapp}?text=${encodeURIComponent(customMessage)}`;
   
   // Email Url
-  const emailUrl = `mailto:${contact.email}?subject=${encodeURIComponent(`Consulta - ${buildingName}`)}&body=${encodeURIComponent(contact.message)}`;
+  const emailUrl = `mailto:${contact?.email || ""}?subject=${encodeURIComponent(
+    `Consulta - ${buildingName} - ${activeUnit?.name || ""}`
+  )}&body=${encodeURIComponent(customMessage)}`;
 
   return (
     <section id="contact" className="py-24 bg-gold-950 text-white relative overflow-hidden">

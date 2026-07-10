@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { projectData } from "../data/projectData";
 import { Building2, Menu, X, Phone } from "lucide-react";
 
-export default function Header() {
+export default function Header({ activeUnit }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -19,14 +19,19 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { name: "Galería", href: "#gallery" },
-    { name: "Planta Interactiva", href: "#floorplan" },
-    { name: "Recorrido 360°", href: "#tour360" },
-    { name: "Ficha Técnica", href: "#specs" },
+    { name: "Renders", href: "#common-gallery" },
+    { name: "Unidades", href: "#floorplan" },
+    { name: "Interiores", href: "#unit-gallery" },
+    { name: "360°", href: "#tour360" },
+    { name: "Datos", href: "#specs" },
     { name: "Contacto", href: "#contact" }
   ];
 
-  const cleanedWhatsapp = projectData.contact.whatsapp.replace(/\D/g, "");
+  const cleanedWhatsapp = (projectData.contact?.whatsapp || "").replace(/\D/g, "");
+  
+  // Mensaje personalizado de WhatsApp basado en la unidad activa
+  const customMessage = `Hola! Estoy interesado en la ${activeUnit?.name || "unidad"} (${activeUnit?.label || ""}) de ${projectData.buildingName}. ¿Me podrían enviar más información?`;
+  const whatsappUrl = `https://wa.me/${cleanedWhatsapp}?text=${encodeURIComponent(customMessage)}`;
 
   return (
     <header
@@ -47,13 +52,13 @@ export default function Header() {
               {projectData.buildingName}
             </h1>
             <p className="text-xs text-gold-600 font-medium tracking-wide">
-              {projectData.unitName}
+              {activeUnit ? `${activeUnit.name} - ${activeUnit.label}` : projectData.location}
             </p>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -64,9 +69,7 @@ export default function Header() {
             </a>
           ))}
           <a
-            href={`https://wa.me/${cleanedWhatsapp}?text=${encodeURIComponent(
-              projectData.contact.message
-            )}`}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500 hover:bg-gold-600 text-white text-xs font-semibold tracking-wide transition-all shadow-md shadow-gold-500/10 hover:shadow-gold-500/20"
@@ -101,9 +104,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href={`https://wa.me/${cleanedWhatsapp}?text=${encodeURIComponent(
-                projectData.contact.message
-              )}`}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}

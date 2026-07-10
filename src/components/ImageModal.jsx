@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ImageModal({
@@ -8,10 +8,22 @@ export default function ImageModal({
   activeIndex,
   setActiveIndex
 }) {
-  if (!isOpen) return null;
+  const handlePrev = useCallback((e) => {
+    e?.stopPropagation();
+    if (!images.length) return;
+    setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  }, [images.length, setActiveIndex]);
 
-  // Keyboard navigation
+  const handleNext = useCallback((e) => {
+    e?.stopPropagation();
+    if (!images.length) return;
+    setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  }, [images.length, setActiveIndex]);
+
+  // Prevent scrolling while modal is open and handle keydown
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft") handlePrev();
@@ -19,26 +31,18 @@ export default function ImageModal({
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    // Prevent scrolling while modal is open
     document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
     };
-  }, [activeIndex, isOpen]);
+  }, [isOpen, onClose, handlePrev, handleNext]);
 
-  const handlePrev = (e) => {
-    e?.stopPropagation();
-    setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const handleNext = (e) => {
-    e?.stopPropagation();
-    setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  if (!isOpen) return null;
 
   const activeImage = images[activeIndex];
+  if (!activeImage) return null;
 
   return (
     <div

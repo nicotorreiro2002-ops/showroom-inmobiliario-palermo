@@ -1,56 +1,69 @@
 import React, { useState } from "react";
 import { projectData } from "../data/projectData";
 import ImageModal from "./ImageModal";
-import { Eye } from "lucide-react";
+import { Eye, Building2, Home } from "lucide-react";
 
-export default function Gallery() {
+export default function Gallery({ activeUnit, variant = "unit" }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const { gallery } = projectData;
+  const [modalImages, setModalImages] = useState([]);
+
+  const commonGallery = projectData.commonGallery || projectData.projectGallery || [];
+  const unitGallery = activeUnit?.gallery || [];
+  const isCommon = variant === "common";
+  const images = isCommon ? commonGallery : unitGallery;
 
   const handleImageClick = (index) => {
+    setModalImages(images);
     setActiveImageIndex(index);
     setModalOpen(true);
   };
 
+  if (!images.length) return null;
+
   return (
-    <section id="gallery" className="py-24 bg-gold-50/50">
+    <section
+      id={isCommon ? "common-gallery" : "unit-gallery"}
+      className={`py-24 ${isCommon ? "bg-gold-50/50" : "bg-white"}`}
+    >
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-xs uppercase tracking-widest text-gold-500 font-bold mb-3">
-            GALE RÍ A DE RE NDERS
-          </h2>
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="inline-flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-gold-500 font-bold mb-3">
+            {isCommon ? <Building2 className="w-4 h-4" /> : <Home className="w-4 h-4" />}
+            <span>{isCommon ? "Galería del edificio" : "Galería de unidad"}</span>
+          </p>
           <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Descubrí cada rincón de la unidad
+            {isCommon ? "Renders exteriores y espacios comunes" : `Interiores ${activeUnit?.name || ""}`}
           </h3>
+          <p className="text-gray-600 mt-3 text-sm md:text-base">
+            {isCommon
+              ? "Imágenes generales del emprendimiento que aplican a todas las unidades."
+              : `Renders y ambientes propios de la ${activeUnit?.name || "unidad seleccionada"}.`}
+          </p>
           <div className="h-[2px] w-16 bg-gold-500 mx-auto mt-4" />
         </div>
 
-        {/* Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {gallery.map((item, idx) => (
-            <div
-              key={idx}
+          {images.map((item, idx) => (
+            <button
+              key={`${item.title}-${item.image}`}
+              type="button"
               onClick={() => handleImageClick(idx)}
-              className="group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gold-100 flex flex-col h-full"
+              className="group text-left cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gold-100 flex flex-col h-full animate-in fade-in"
             >
-              {/* Image Wrapper */}
               <div className="relative aspect-video overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Hover overlay */}
                 <div className="absolute inset-0 bg-gray-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white text-gold-600 flex items-center justify-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="w-11 h-11 rounded-full bg-white text-gold-600 flex items-center justify-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <Eye className="w-5 h-5" />
                   </div>
                 </div>
               </div>
 
-              {/* Text info */}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
                   <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-gold-600 transition-colors">
@@ -61,16 +74,15 @@ export default function Gallery() {
                   </p>
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Image Modal for Fullscreen navigation */}
       <ImageModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        images={gallery}
+        images={modalImages}
         activeIndex={activeImageIndex}
         setActiveIndex={setActiveImageIndex}
       />

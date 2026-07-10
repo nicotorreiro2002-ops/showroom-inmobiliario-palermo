@@ -13,7 +13,7 @@ export default function Tour360() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-xs uppercase tracking-widest text-gold-500 font-bold mb-3">
-            RE CORRIDO VIRTUAL
+            RECORRIDO VIRTUAL
           </h2>
           <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
             {tour360.title || "Recorrido 360°"}
