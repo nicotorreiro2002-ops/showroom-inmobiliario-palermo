@@ -31,24 +31,39 @@ export const projectData = {
   // Galería de renders generales (se muestran en la grilla y el modal fullscreen)
   gallery: [
     {
-     title: "Render exterior nocturno",
+     title: "Render exterior nocturno lateral",
       image: "/images/render exterior nocturno.png",
       description: "Edificio residencial en Palermo."
     },
     {
-      title: "Render exterior",
+      title: "Render exterior nocturno frontal",
+      image: "/images/render exterior nocturno frontal.png",
+      description: "Edificio residencial en Palermo."
+    },
+    {
+      title: "Render exterior atardecer",
+      image: "/images/render exterior atardecer.png",
+      description: "Edificio residencial en Palermo."
+    },
+    {
+      title: "Render exterior diurno",
       image: "/images/render exterior.png",
       description: "Edificio residencial en Palermo."
     },
     {
-      title: "Living Comedor",
+       title: "Unidad 10 A - Living Comedor",
       image: "/images/living.png",
       description: "Espacioso living comedor con amplia vista e iluminación natural."
     },
     {
-      title: "Dormitorio Principal",
+      title: "Unidad 10 A - Dormitorio Principal",
       image: "/images/dormitorio.png",
       description: "Dormitorio con placard integrado y salida directa al balcón."
+    },
+    {
+      title: "Unidad 10C - Ambiente principal",
+      image: "/images/Unidad 10C.png",
+      description: "Monoambiente con placard integrado y salida directa al balcón."
     }
   ],
 
