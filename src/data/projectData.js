@@ -21,11 +21,11 @@ export const projectData = {
   heroImages: {
     day: {
       label: "Día",
-      image: "/images/render exterior.png"
+      image: "/images/render exterior atardecer.png"
     },
     night: {
       label: "Noche",
-      image: "/images/render exterior nocturno.png"
+      image: "/images/render exterior nocturno frontal.png"
     }
   },
 
