@@ -37,21 +37,27 @@ export default function Header({ activeUnit }) {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gold-100 py-3"
+          ? "bg-white/78 backdrop-blur-xl shadow-[0_10px_40px_rgba(23,23,23,0.08)] border-b border-gold-100/70 py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Brand/Logo Area */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full bg-gold-500 text-white flex items-center justify-center shadow-md shadow-gold-500/20 group-hover:bg-gold-600 transition-colors">
+          <div className={`w-10 h-10 rounded-lg flex items-center justify-center shadow-md transition-colors ${
+            scrolled
+              ? "bg-gold-900 text-gold-100 shadow-gold-900/15 group-hover:bg-gold-700"
+              : "bg-gold-500 text-white shadow-gold-900/20 group-hover:bg-gold-400"
+          }`}>
             <Building2 className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-gray-900 leading-tight group-hover:text-gold-600 transition-colors">
+            <h1 className={`text-lg font-extrabold leading-tight transition-colors ${
+              scrolled ? "text-gray-950 group-hover:text-gold-700" : "text-white group-hover:text-gold-100"
+            }`}>
               {projectData.buildingName}
             </h1>
-            <p className="text-xs text-gold-600 font-medium tracking-wide">
+            <p className={`text-xs font-semibold ${scrolled ? "text-gold-600" : "text-gold-200"}`}>
               {activeUnit ? `${activeUnit.name} - ${activeUnit.label}` : projectData.location}
             </p>
           </div>
@@ -63,7 +69,11 @@ export default function Header({ activeUnit }) {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-600 hover:text-gold-600 transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300"
+              className={`text-sm font-semibold transition-colors relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-px hover:after:w-full after:transition-all after:duration-300 ${
+                scrolled
+                  ? "text-gray-600 hover:text-gold-700 after:bg-gold-500"
+                  : "text-white/78 hover:text-white after:bg-gold-300"
+              }`}
             >
               {link.name}
             </a>
@@ -72,7 +82,11 @@ export default function Header({ activeUnit }) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500 hover:bg-gold-600 text-white text-xs font-semibold tracking-wide transition-all shadow-md shadow-gold-500/10 hover:shadow-gold-500/20"
+            className={`premium-button flex items-center gap-2 px-4 py-2 text-white text-xs font-bold transition-all shadow-md ${
+              scrolled
+                ? "bg-gold-900 hover:bg-gold-700 shadow-gold-900/10 hover:shadow-gold-900/20"
+                : "bg-gold-500 hover:bg-gold-600 shadow-gold-900/20"
+            }`}
           >
             <Phone className="w-3.5 h-3.5" />
             CONTACTAR
@@ -82,7 +96,9 @@ export default function Header({ activeUnit }) {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-gold-50 text-gray-700 hover:text-gold-600 transition-colors"
+          className={`md:hidden p-2 rounded-lg transition-colors ${
+            scrolled ? "text-gray-700 hover:bg-gold-50 hover:text-gold-700" : "text-white hover:bg-white/10"
+          }`}
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -91,14 +107,14 @@ export default function Header({ activeUnit }) {
 
       {/* Mobile Menu Panel */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gold-100 shadow-lg py-6 px-6 animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gold-100 shadow-lg py-6 px-6 animate-in fade-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-gray-700 hover:text-gold-600 transition-colors py-2 border-b border-gray-50"
+                className="text-base font-semibold text-gray-700 hover:text-gold-700 transition-colors py-2 border-b border-gray-50"
               >
                 {link.name}
               </a>
@@ -108,7 +124,7 @@ export default function Header({ activeUnit }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 mt-4 px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-white text-sm font-semibold tracking-wide transition-all shadow-md"
+              className="premium-button flex items-center justify-center gap-2 mt-4 px-5 py-3 bg-gold-900 hover:bg-gold-700 text-white text-sm font-bold transition-all shadow-md"
             >
               <Phone className="w-4 h-4" />
               Enviar WhatsApp

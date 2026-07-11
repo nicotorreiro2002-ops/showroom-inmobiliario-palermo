@@ -4,99 +4,86 @@ import { MessageSquare, Mail, MapPin } from "lucide-react";
 
 export default function Contact({ activeUnit }) {
   const { contact, buildingName, location } = projectData;
-
-  // Sanitizamos el número de teléfono
   const cleanedWhatsapp = (contact?.whatsapp || "").replace(/\D/g, "");
-  
-  // Mensaje y asunto dinámico según la unidad que esté visualizando
   const unitText = activeUnit ? ` la ${activeUnit.name} (${activeUnit.label})` : "";
   const customMessage = `Hola! Estoy interesado en obtener más información sobre${unitText} en ${buildingName}.`;
-  
-  // WhatsApp Url
   const whatsappUrl = `https://wa.me/${cleanedWhatsapp}?text=${encodeURIComponent(customMessage)}`;
-  
-  // Email Url
   const emailUrl = `mailto:${contact?.email || ""}?subject=${encodeURIComponent(
     `Consulta - ${buildingName} - ${activeUnit?.name || ""}`
   )}&body=${encodeURIComponent(customMessage)}`;
 
   return (
-    <section id="contact" className="py-24 bg-gold-950 text-white relative overflow-hidden">
-      {/* Background Subtle Accent Lights */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-gold-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-gold-600/5 rounded-full blur-[100px] pointer-events-none" />
+    <section id="contact" className="py-28 bg-gold-950 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_38%),linear-gradient(180deg,#18130f_0%,#0f0d0a_100%)]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
-        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-xs uppercase tracking-widest text-gold-400 font-bold mb-3">
-            HACÉ TU CONSULTA
+          <h2 className="premium-kicker text-gold-300 mb-3">
+            Hacé tu consulta
           </h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            Comenzá tu próximo capítulo
+          <h3 className="text-3xl md:text-5xl font-semibold leading-tight">
+            Coordiná una visita privada
           </h3>
           {contact.commercialText && (
-            <p className="text-gold-200/80 mt-4 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
+            <p className="text-gold-100/75 mt-4 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
               {contact.commercialText}
             </p>
           )}
-          <div className="h-[2px] w-16 bg-gold-400 mx-auto mt-6" />
+          <div className="premium-rule mx-auto mt-6" />
         </div>
 
-        {/* Contact Methods Panel */}
-        <div className="w-full max-w-3xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-md shadow-2xl flex flex-col md:flex-row gap-6 md:gap-8 items-stretch justify-center">
-          
-          {/* WhatsApp Action Card */}
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex flex-col items-center justify-between text-center p-6 md:p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold-500/30 transition-all duration-300 group"
-          >
-            <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-gold-500/10 text-gold-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                <MessageSquare className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold mb-2">WhatsApp Directo</h4>
-              <p className="text-xs text-gray-400 max-w-[200px] leading-relaxed">
-                Asesoramiento inmediato por parte de nuestro equipo comercial.
-              </p>
-            </div>
-            <span className="mt-8 px-6 py-2.5 rounded-full bg-gold-500 hover:bg-gold-600 text-white font-bold text-xs tracking-wider transition-all">
-              INICIAR CHAT
-            </span>
-          </a>
-
-          {/* Email Action Card */}
-          <a
-            href={emailUrl}
-            className="flex-1 flex flex-col items-center justify-between text-center p-6 md:p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold-500/30 transition-all duration-300 group"
-          >
-            <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-gold-500/10 text-gold-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                <Mail className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold mb-2">Correo Electrónico</h4>
-              <p className="text-xs text-gray-400 max-w-[200px] leading-relaxed">
-                Envianos tus datos de contacto para una atención formal detallada.
-              </p>
-            </div>
-            <span className="mt-8 px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-white border border-white/10 font-bold text-xs tracking-wider transition-all">
-              ENVIAR EMAIL
-            </span>
-          </a>
-
+        <div className="w-full max-w-3xl border border-white/10 bg-white/[0.045] p-4 md:p-5 rounded-lg backdrop-blur-xl shadow-2xl shadow-black/25">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ContactCard
+              href={whatsappUrl}
+              icon={<MessageSquare className="w-6 h-6" />}
+              title="WhatsApp directo"
+              description="Asesoramiento inmediato por parte de nuestro equipo comercial."
+              action="Iniciar chat"
+              external
+            />
+            <ContactCard
+              href={emailUrl}
+              icon={<Mail className="w-6 h-6" />}
+              title="Correo electrónico"
+              description="Envianos tus datos de contacto para una atención formal detallada."
+              action="Enviar email"
+            />
+          </div>
         </div>
 
-        {/* Footer Area */}
-        <div className="mt-24 pt-8 border-t border-white/10 w-full text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-20 pt-8 border-t border-white/10 w-full text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-gold-500" />
-            <span>{buildingName} — {location}</span>
+            <span>{buildingName} - {location}</span>
           </div>
-          <p>© {new Date().getFullYear()} Showroom Inmobiliario Interactivo. Desarrollado de forma modular.</p>
+          <p>© {new Date().getFullYear()} Showroom Inmobiliario Interactivo.</p>
         </div>
       </div>
     </section>
+  );
+}
+
+function ContactCard({ href, icon, title, description, action, external }) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="group flex flex-col items-center justify-between text-center p-7 rounded-lg border border-white/10 bg-white/[0.04] transition-all duration-300 hover:bg-white/[0.075] hover:border-gold-400/40"
+    >
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-lg bg-gold-500/10 text-gold-300 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-white transition-colors">
+          {icon}
+        </div>
+        <h4 className="text-lg font-semibold mb-2">{title}</h4>
+        <p className="text-xs text-gray-400 max-w-[220px] leading-relaxed">
+          {description}
+        </p>
+      </div>
+      <span className="premium-button mt-8 px-6 py-2.5 bg-gold-500 text-white font-bold text-xs transition-all group-hover:bg-gold-600">
+        {action}
+      </span>
+    </a>
   );
 }

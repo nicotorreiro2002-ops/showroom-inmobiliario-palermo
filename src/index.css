@@ -3,16 +3,17 @@
 
 @theme {
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --color-gold-50: #fbfaf7;
-  --color-gold-100: #f4f0e6;
-  --color-gold-200: #e7dfcc;
-  --color-gold-300: #d4c5a9;
-  --color-gold-400: #bfa882;
-  --color-gold-500: #aa8d5e;
-  --color-gold-600: #937446;
-  --color-gold-700: #7a5e37;
-  --color-gold-800: #624b2d;
-  --color-gold-900: #503d25;
+  --color-gold-50: #faf7ef;
+  --color-gold-100: #efe7d6;
+  --color-gold-200: #ded0b8;
+  --color-gold-300: #c8b28c;
+  --color-gold-400: #b1915f;
+  --color-gold-500: #9f7a45;
+  --color-gold-600: #836033;
+  --color-gold-700: #664926;
+  --color-gold-800: #49351f;
+  --color-gold-900: #2e2419;
+  --color-gold-950: #18130f;
 }
 
 html {
@@ -21,9 +22,56 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-gold-50);
-  color: #1c1c1e;
+  background:
+    linear-gradient(180deg, #fbfaf7 0%, #f5efe5 48%, #fbfaf7 100%);
+  color: #171717;
   overflow-x: hidden;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis-weight: none;
+}
+
+::selection {
+  background: var(--color-gold-500);
+  color: white;
+}
+
+@layer components {
+  .premium-surface {
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(159, 122, 69, 0.18);
+    box-shadow: 0 18px 55px rgba(39, 30, 20, 0.08);
+    backdrop-filter: blur(18px);
+  }
+
+  .premium-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(159, 122, 69, 0.16);
+    border-radius: 8px;
+    box-shadow: 0 20px 55px rgba(38, 30, 20, 0.08);
+  }
+
+  .premium-kicker {
+    color: var(--color-gold-600);
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .premium-rule {
+    width: 4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+  }
+
+  .premium-button {
+    border-radius: 8px;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .premium-button:hover {
+    transform: translateY(-1px);
+  }
 }
 
 /* Custom scrollbar for premium look */

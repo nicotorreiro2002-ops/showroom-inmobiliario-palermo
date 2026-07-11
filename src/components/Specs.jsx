@@ -27,31 +27,27 @@ export default function Specs({ activeUnit }) {
   ];
 
   return (
-    <section id="specs" className="py-24 bg-white animate-in fade-in duration-300">
+    <section id="specs" className="py-28 bg-gold-50 animate-in fade-in duration-300">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-xs uppercase tracking-widest text-gold-500 font-bold mb-3">
-            FICHA TÉCNICA
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="premium-kicker mb-3">
+            Ficha técnica
           </h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h3 className="text-3xl md:text-5xl font-semibold text-gray-950 leading-tight">
             Especificaciones de la {activeUnit?.name || "Unidad"}
           </h3>
-          <div className="h-[2px] w-16 bg-gold-500 mx-auto mt-4" />
+          <div className="premium-rule mx-auto mt-5" />
         </div>
 
-        {/* 3-Column Detailed Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          {/* Tech Data Sheet Column */}
-          <div className="bg-gold-50/30 border border-gold-100 rounded-3xl p-8 shadow-sm">
-            <h4 className="flex items-center gap-2 text-lg font-bold text-gray-950 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="premium-card p-8">
+            <h4 className="flex items-center gap-2 text-lg font-semibold text-gray-950 mb-6">
               <Sliders className="w-5 h-5 text-gold-500" />
-              <span>Dimensiones y Datos</span>
+              <span>Dimensiones y datos</span>
             </h4>
             <div className="space-y-4">
-              {technicalData.map((data, idx) => (
-                <div key={idx} className="flex justify-between items-center py-3 border-b border-gold-100/50 text-sm">
+              {technicalData.map((data) => (
+                <div key={data.label} className="flex justify-between items-center py-3 border-b border-gold-100/70 text-sm">
                   <div className="flex items-center gap-2.5 text-gray-600">
                     {data.icon}
                     <span>{data.label}</span>
@@ -62,17 +58,16 @@ export default function Specs({ activeUnit }) {
             </div>
           </div>
 
-          {/* Finishes Details Column */}
-          <div className="bg-gold-50/30 border border-gold-100 rounded-3xl p-8 shadow-sm">
-            <h4 className="flex items-center gap-2 text-lg font-bold text-gray-950 mb-6">
+          <div className="premium-card p-8">
+            <h4 className="flex items-center gap-2 text-lg font-semibold text-gray-950 mb-6">
               <Sparkles className="w-5 h-5 text-gold-500" />
-              <span>Terminaciones Premium</span>
+              <span>Terminaciones premium</span>
             </h4>
             {specs.finishes && specs.finishes.length > 0 ? (
               <ul className="space-y-4">
-                {specs.finishes.map((finish, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                    <div className="mt-0.5 w-5 h-5 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center shrink-0">
+                {specs.finishes.map((finish) => (
+                  <li key={finish} className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                    <div className="mt-0.5 w-5 h-5 rounded-lg bg-gold-100 text-gold-600 flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 font-bold" />
                     </div>
                     <span>{finish}</span>
@@ -84,17 +79,16 @@ export default function Specs({ activeUnit }) {
             )}
           </div>
 
-          {/* Amenities Details Column (Común al edificio) */}
-          <div className="bg-gold-50/30 border border-gold-100 rounded-3xl p-8 shadow-sm">
-            <h4 className="flex items-center gap-2 text-lg font-bold text-gray-950 mb-6">
+          <div className="premium-card p-8">
+            <h4 className="flex items-center gap-2 text-lg font-semibold text-gray-950 mb-6">
               <ShieldCheck className="w-5 h-5 text-gold-500" />
-              <span>Amenities del Edificio</span>
+              <span>Amenities del edificio</span>
             </h4>
             {projectData.amenities && projectData.amenities.length > 0 ? (
               <ul className="space-y-4">
-                {projectData.amenities.map((amenity, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                    <div className="mt-0.5 w-5 h-5 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center shrink-0">
+                {projectData.amenities.map((amenity) => (
+                  <li key={amenity} className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                    <div className="mt-0.5 w-5 h-5 rounded-lg bg-gold-100 text-gold-600 flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 font-bold" />
                     </div>
                     <span>{amenity}</span>
@@ -105,7 +99,6 @@ export default function Specs({ activeUnit }) {
               <p className="text-sm text-gray-500 italic">No se especifican amenities de uso común.</p>
             )}
           </div>
-
         </div>
       </div>
     </section>

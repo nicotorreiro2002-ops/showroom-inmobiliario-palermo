@@ -43,12 +43,12 @@ export const projectData = {
   commonGallery: [
     {
       title: "Fachada Principal",
-      image: "/images/render exterior.png",
+      image: "/images/render exterior atardecer.png",
       description: "Vista exterior de tarde del emprendimiento."
     },
     {
-      title: "Fachada Atardecer",
-      image: "/images/render exterior atardecer.png",
+      title: "Fachada Lateral",
+      image: "/images/render exterior.png",
       description: "Atardecer en Brigos Palermo."
     },
     {

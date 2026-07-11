@@ -36,24 +36,24 @@ export default function InteractiveFloorplan({
   };
 
   return (
-    <section id="floorplan" className="py-24 bg-white">
+    <section id="floorplan" className="py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-xs uppercase tracking-widest text-gold-500 font-bold mb-3">
+        <div className="max-w-3xl mx-auto mb-14 text-center">
+          <h2 className="premium-kicker mb-3">
             UNIDADES DISPONIBLES
           </h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h3 className="text-3xl md:text-5xl font-semibold text-gray-950 leading-tight">
             Elegí unidad y explorá su plano
           </h3>
-          <p className="text-gray-600 mt-3 text-sm md:text-base">
+          <p className="text-gray-600 mt-4 text-sm md:text-base leading-relaxed">
             Cada unidad tiene sus propios datos, renders interiores y puntos interactivos sobre la planta.
           </p>
-          <div className="h-[2px] w-16 bg-gold-500 mx-auto mt-4" />
+          <div className="premium-rule mx-auto mt-5" />
         </div>
 
         {units.length > 1 && (
           <div className="max-w-xl mx-auto mb-10">
-            <div className="flex bg-gold-50 border border-gold-100 p-1.5 rounded-2xl shadow-sm">
+            <div className="premium-surface flex p-1 rounded-lg">
               {units.map((unit) => {
                 const isActive = unit.id === activeUnitId;
                 return (
@@ -61,7 +61,7 @@ export default function InteractiveFloorplan({
                     key={unit.id}
                     type="button"
                     onClick={() => setActiveUnitId(unit.id)}
-                    className={`flex-1 py-3 px-4 rounded-xl text-xs md:text-sm font-bold tracking-wide transition-all duration-300 cursor-pointer ${
+                    className={`flex-1 py-3 px-4 rounded-md text-xs md:text-sm font-bold transition-all duration-300 cursor-pointer ${
                       isActive
                         ? "bg-gold-500 text-white shadow-lg shadow-gold-500/20"
                         : "text-gray-600 hover:text-gold-700 hover:bg-white"
@@ -83,9 +83,9 @@ export default function InteractiveFloorplan({
             {quickSpecItems.map((item) => (
               <div
                 key={item.label}
-                className="bg-gold-50/60 border border-gold-100 rounded-2xl p-4 flex items-center gap-3"
+                className="premium-card p-4 flex items-center gap-3"
               >
-                <div className="w-9 h-9 rounded-xl bg-white border border-gold-100 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-white border border-gold-100 flex items-center justify-center shrink-0">
                   {item.icon}
                 </div>
                 <div>
@@ -102,7 +102,7 @@ export default function InteractiveFloorplan({
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          <div className="lg:col-span-8 bg-gold-50/30 border border-gold-100 rounded-3xl p-4 md:p-8 flex justify-center items-center relative shadow-sm overflow-hidden select-none">
+          <div className="lg:col-span-8 premium-card p-4 md:p-8 flex justify-center items-center relative overflow-hidden select-none">
             {floorplan.image ? (
               <div className="relative w-full max-w-2xl">
                 <img
@@ -141,10 +141,10 @@ export default function InteractiveFloorplan({
 
           <div className="lg:col-span-4 hidden lg:block">
             {activeHotspot ? (
-              <div className="bg-gold-50/50 border border-gold-100 rounded-3xl p-6 md:p-8 shadow-sm flex flex-col justify-between h-full animate-in fade-in slide-in-from-right-4 duration-300">
+              <div className="premium-card p-6 md:p-8 flex flex-col justify-between h-full animate-in fade-in slide-in-from-right-4 duration-300">
                 <div>
                   {activeHotspot.image && (
-                    <div className="aspect-video w-full rounded-2xl overflow-hidden mb-6 border border-gold-100 shadow-sm relative group">
+                    <div className="aspect-video w-full rounded-lg overflow-hidden mb-6 border border-gold-100 shadow-sm relative group">
                       <img
                         src={activeHotspot.image}
                         alt={activeHotspot.title}
@@ -154,7 +154,7 @@ export default function InteractiveFloorplan({
                   )}
 
                   <div className="flex items-start gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-gold-100 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-gold-100 flex items-center justify-center shrink-0">
                       <Compass className="w-5 h-5 text-gold-600" />
                     </div>
                     <div>
@@ -176,7 +176,7 @@ export default function InteractiveFloorplan({
                       href={activeHotspot.tourUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3.5 px-5 rounded-2xl bg-gold-500 hover:bg-gold-600 text-white font-bold text-sm tracking-wide shadow-md shadow-gold-500/10 hover:shadow-gold-500/20 transition-all"
+                      className="premium-button flex items-center justify-center gap-2 w-full py-3.5 px-5 bg-gold-500 hover:bg-gold-600 text-white font-bold text-sm shadow-md shadow-gold-500/10 hover:shadow-gold-500/20 transition-all"
                     >
                       <span>Ver vista 360°</span>
                       <ArrowUpRight className="w-4 h-4" />
@@ -185,7 +185,7 @@ export default function InteractiveFloorplan({
                 )}
               </div>
             ) : (
-              <div className="bg-gray-50 border border-gray-100 rounded-3xl p-8 text-center flex flex-col items-center justify-center min-h-[300px] h-full">
+              <div className="premium-card p-8 text-center flex flex-col items-center justify-center min-h-[300px] h-full">
                 <Info className="w-10 h-10 text-gray-300 mb-4" />
                 <p className="text-gray-500 text-sm max-w-[200px] leading-relaxed">
                   Seleccioná un ambiente de la planta para ver fotos, descripción y su vista 360°.
@@ -202,7 +202,7 @@ export default function InteractiveFloorplan({
           onClick={() => setIsMobileDetailOpen(false)}
         >
           <div
-            className="bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-sm border border-gold-100 animate-in zoom-in-95 duration-200 relative"
+            className="bg-white rounded-lg overflow-hidden shadow-2xl w-full max-w-sm border border-gold-100 animate-in zoom-in-95 duration-200 relative"
             onClick={(e) => e.stopPropagation()}
           >
             {activeHotspot.image ? (
@@ -236,7 +236,7 @@ export default function InteractiveFloorplan({
 
             <div className="p-6">
               <div className="flex items-start gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-gold-100 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-gold-100 flex items-center justify-center shrink-0">
                   <Compass className="w-5 h-5 text-gold-600" />
                 </div>
                 <div>
@@ -256,7 +256,7 @@ export default function InteractiveFloorplan({
                   href={activeHotspot.tourUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3.5 px-5 rounded-2xl bg-gold-500 hover:bg-gold-600 text-white font-bold text-sm tracking-wide shadow-md shadow-gold-500/10 hover:shadow-gold-500/20 transition-all"
+                  className="premium-button flex items-center justify-center gap-2 w-full py-3.5 px-5 bg-gold-500 hover:bg-gold-600 text-white font-bold text-sm shadow-md shadow-gold-500/10 hover:shadow-gold-500/20 transition-all"
                 >
                   <span>Ver vista 360°</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -265,7 +265,7 @@ export default function InteractiveFloorplan({
                 <button
                   type="button"
                   onClick={() => setIsMobileDetailOpen(false)}
-                  className="w-full py-3.5 px-5 rounded-2xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm tracking-wide transition-all cursor-pointer"
+                  className="premium-button w-full py-3.5 px-5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm transition-all cursor-pointer"
                 >
                   Cerrar
                 </button>
