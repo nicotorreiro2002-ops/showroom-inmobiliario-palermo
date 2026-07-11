@@ -185,7 +185,7 @@ export const projectData = {
             title: "Living comedor",
             x: 38,
             y: 60,
-            image: "/images/living.png",
+            image: "/images/Unidad 10C.png",
             description: "Área social de la unidad 10C.",
             tourUrl: "https://kuula.co/share/collection/7TcSF?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1"
           },
@@ -194,7 +194,7 @@ export const projectData = {
             title: "Dormitorio principal",
             x: 65,
             y: 35,
-            image: "/images/dormitorio.png",
+            image: "/images/Unidad 10C.png",
             description: "Dormitorio principal independiente y muy silencioso.",
             tourUrl: "https://kuula.co/share/collection/7K7Pz"
           }
