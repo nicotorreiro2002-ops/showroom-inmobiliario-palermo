@@ -17,6 +17,18 @@ export const projectData = {
   // Imagen principal del Hero (debe estar en /public/images/)
   heroImage: "/images/hero.png",
 
+  // Versiones de la imagen principal del Hero
+  heroImages: {
+    day: {
+      label: "Día",
+      image: "/images/render exterior.png"
+    },
+    night: {
+      label: "Noche",
+      image: "/images/render exterior nocturno.png"
+    }
+  },
+
   // Recorrido 360 general (común a todo el emprendimiento - embed de Kuula)
   tour360: {
     title: "Experiencia Virtual 360",
